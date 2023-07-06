@@ -1,32 +1,45 @@
 #include <stdio.h>
 #include <string.h>
 
-int sget(char* vetor, int tam) {
-    fflush(stdin); 
-    if (fgets(vetor, tam, stdin)) { 
-        int i;
-        for( i = 0; vetor[i] != '\n' && vetor[i]; ++i)
-          ;
-        vetor[i] = '\0';
-    }
+int palindroma(const char *palavra, int inicio, int fim) {
+  while (inicio < fim) {
+    if (palavra[inicio] != palavra[fim]){
+      return 0;
+    inicio++;
+    end--;
+  }
+  }
+  return 1;
 }
 
 
-int verificarPalindromo(char palavra[]){
-  int i = 0;
-  int checar = 0;
+int longestPalSubstr(const char *str) {
+  // Stores the longest palindrome substring
+  char longest[1000] = "";
+  int n = strlen(str);
+  int maxLength = 1;
 
-  for(i = 0; i < (strlen(palavra)/2+1); i++){
-    if (palavra[i] != palavra[strlen(palavra)-i-1]){
-      checar = 0;
+  // Traverse all substrings
+  for (int i = 0; i < n; i++) {
+    for (int j = i; j < n; j++) {
+      // Check if the substring is a palindrome
+      if (isPalindrome(str, i, j)) {
+        int length = j - i + 1;
+        if (length > maxLength) {
+          maxLength = length;
+          strncpy(longest, str + i, maxLength);
+          longest[maxLength] = '\0';
+        }
+      }
     }
   }
-  return checar;
+
+  printf("Output: %s", longest);
 }
 
-
-
-int main(void) {
-  printf("Hello World\n");
+// Driver Code
+int main() {
+  const char *str = "babad";
+  printf("\n", longestPalSubstr(str));
   return 0;
 }
