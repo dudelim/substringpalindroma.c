@@ -2,22 +2,20 @@
 #include <string.h>
  
 
-int checarpalindromo(char palavra){
-   int i = 0;
-   int checar = 0;
-
-  for(i = 0; i < (strlen(palavra)/2 + 1); i++){
-    if(palavra[i] != palavra [strlen(palavra)-i-1]){
-      checar = 0;
+int checarpalindromo(char* palavra, int i, int k){
+    for(i; i < (strlen(palavra)/2 + 1); i++){
+    if(palavra[i] != palavra[k]){
+      return 0;
+      k--;
     }
-  }
+    return 1;
 }
+  }
  
 
-int maiorpalindromo(char* palavra)
-{
+int maiorpalindromo(char* palavra){
    
-    char maior[100] = "";
+    char maior[50] = "";
     int x = strlen(palavra);
     int maior_comp = 1;
  
@@ -37,6 +35,7 @@ int maiorpalindromo(char* palavra)
     }
     printf("Output: %s", maior);
 }
+
  
 int main()
 {
